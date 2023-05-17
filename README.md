@@ -1,0 +1,1 @@
+This is a README file on the Ping-Pong Game Application built using HTML, CSS, and JavaScript. 
