@@ -5,60 +5,46 @@
 }
 
 body{
-	background-color: coral;
+	background-color: darkgrey;
 }
 
-.header{
+.header {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 	padding: 0.1em;
-	margin-top: 0.5em;
-}
-
-.header a{
-	text-decoration: none;
-	color: white;
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-	letter-spacing: 1px;
-	font-size: 1.3em;
-}
-
-.header a:hover{
-	background-color: white;
-	color: green;
-	transition: 0.3s ease-in-out;
-	padding: 7px;
-	border-radius: 2px;
-}
-
-.buttons button{
-	border: none;
+	margin-top: 0.1em;
 	background-color: green;
-	color: white;
-	padding: 10px;
-	text-transform: uppercase;
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-	letter-spacing: 1px;
-	border-radius: 5px;
-	font-size: 1em;
 }
 
-.buttons button:hover{
-	color: green;
-	background-color: white;
-	transition: 0.3s ease-in-out;
+.buttons button {
+	font-family: fantasy;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	border: none;
+	color: white;
+	background-color: green;
+	padding: 10px;
+	letter-spacing: 1px;
+	font-size: 1em;
+	font-weight: bold;
 }
-.pong-wrapper{
+
+.buttons button:hover {
+	text-decoration: underline;
+	font-size: 1.2em;
+}
+
+.pong-wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin-top: 3em;
 }
 
-#ping-pong{
+#ping-pong {
 	width: 80%;
 	max-width: 680px;
-	border: 6px solid white;
+	border: 12px solid white;
 }
 

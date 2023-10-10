@@ -52,18 +52,6 @@ const net = {
 	color: "white"
 }
 
-startBtn.addEventListener("click", () => {
-	if (!gameRunning) {
-		gameRunning = true;
-		game();
-	}
-});
-
-pauseBtn.addEventListener("click", () => {
-	gameRunning = false;
-	cancelAnimationFrame(animationId);
-});
-
 restartBtn.addEventListener("click", () => {
 	document.location.reload();
 });
@@ -74,10 +62,20 @@ addEventListener("load", (event) => {
 
 //DRAW NET FUNCTION
 function drawNet() {
-	for(let i = 0; i <= canvas.height; i+=15) {
-		drawRectangle(net.x, net.y + i, net.width, net.height, net.color);
-	}
+    const netWidth = 4; // Adjust the net width as needed
+    const netSpacing = 15; // Adjust the spacing as needed
+
+    // Draw the left half of the net
+    for (let i = 0; i <= canvas.height; i += netSpacing) {
+        drawRectangle(net.x, net.y + i, netWidth, net.height, net.color);
+    }
+
+    // Draw the right half of the net
+    for (let i = 0; i <= canvas.height; i += netSpacing) {
+        drawRectangle(net.x + net.width - netWidth, net.y + i, netWidth, net.height, net.color);
+    }
 }
+
 
 //DRAW RECTANGLE FUNCTION
 function drawRectangle(x, y, w, h, color) {
@@ -102,25 +100,27 @@ function drawText(text, x, y, color) {
 }
 
 //RENDER GAME FUNCTION
+// Inside the render() function
 function render() {
-	//CLEAR THE CANVAS
-	drawRectangle(0, 0, canvas.width, canvas.height, "green");
+    // CLEAR THE CANVAS
+    drawRectangle(0, 0, canvas.width, canvas.height, "green");
 
-	//DRAW THE NET
-	drawNet();
+    // DRAW THE NET
+    drawNet();
 
-	//DRAW THE SCORE
-	drawText(user.score, canvas.width/4, canvas.height/5, "white");
+    // DRAW THE SCORE
+    drawText(user.score, canvas.width / 4, canvas.height / 5, "white");
+    drawText(computer.score, (3 * canvas.width) / 4, canvas.height / 5, "white");
 
-	drawText(computer.score, 3*canvas.width/4, canvas.height/5, "white");
+    // DRAW THE USER AND COMPUTER PADDLES
+    drawRectangle(user.x, user.y, user.width, user.height, user.color);
+    drawRectangle(computer.x, computer.y, computer.width, computer.height, computer.color);
 
-	//DRAW THE USER AND COMPUTER PADDLES
-	drawRectangle(user.x, user.y, user.width, user.height, user.color);
+    // DRAW THE BALL
+    drawCircle(ball.x, ball.y, ball.radius, ball.color);
 
-	drawRectangle(computer.x, computer.y, computer.width, computer.height, computer.color);
-
-	//DRAW THE BALL
-	drawCircle(ball.x, ball.y, ball.radius, ball.color);
+    // DRAW THE WHITE LINE IN THE MIDDLE
+    drawRectangle(net.x, net.y, net.width, canvas.height, net.color);
 }
 
 //CONTROL USERS PADDLE
@@ -206,12 +206,25 @@ function update() {
 }
 
 //GAME INITIALIZATION FUNCTION
-function game() {
-	update();
-	render();
-	// animationId = requestAnimationFrame(game);
+function animate() {
+    if(!gameRunning) {
+        return; // Don't continue the animation if it's paused
+    }
+
+    update();
+    render();
+    animationId = requestAnimationFrame(animate);
 }
 
-//LOOP
-const framePerSecond = 50;
-setInterval(game, 1000/framePerSecond);
+
+startBtn.addEventListener("click", () => {
+    if (!gameRunning) {
+        gameRunning = true;
+        animate();
+    }
+});
+
+pauseBtn.addEventListener("click", () => {
+    gameRunning = false;
+    cancelAnimationFrame(animationId);
+});
