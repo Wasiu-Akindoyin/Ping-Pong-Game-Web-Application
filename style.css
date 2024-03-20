@@ -17,8 +17,11 @@ body{
 	background-color: green;
 }
 
+.header img {
+	width: 60px;
+}
+
 .buttons button {
-	font-family: fantasy;
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	border: none;
@@ -28,11 +31,12 @@ body{
 	letter-spacing: 1px;
 	font-size: 1em;
 	font-weight: bold;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .buttons button:hover {
 	text-decoration: underline;
-	font-size: 1.2em;
+	font-size: 1.05em;
 }
 
 .pong-wrapper {
@@ -48,3 +52,19 @@ body{
 	border: 12px solid white;
 }
 
+@media screen and (max-width: 480px) {
+	.header img {
+		width: 40px;
+	}
+	.buttons button {
+		letter-spacing: 1px;
+		padding: 5px;
+		letter-spacing: 1px;
+		font-size: 0.7em;
+	}
+
+	.buttons button:hover {
+		text-decoration: underline;
+		font-size: 1.05em;
+	}
+}
