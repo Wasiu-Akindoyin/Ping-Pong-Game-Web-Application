@@ -1,1 +1,1 @@
-This is a README file on the Ping-Pong Game Application built using HTML, CSS, and JavaScript. 
+This is a README file on the Ping-Pong Game Application built using HTML, CSS, and JavaScript built by Wasiu Olanrewaju Akindoyin. 
